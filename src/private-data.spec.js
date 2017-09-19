@@ -1,0 +1,63 @@
+import $, {privateData} from './private-data'; // eslint-disable-line no-unused-vars
+
+describe('Private Data', () => {
+  const key = 'privateKey';
+  const value = 'foo';
+
+  describe('initializing', () => {
+    it('should be able to read and write to a the private data store', () => {
+      @privateData($)
+      class Foo {
+        setPrivate(value) {
+          $(this)[key] = value;
+        }
+
+        getPrivate() {
+          return $(this)[key];
+        }
+      }
+
+      const myFoo = new Foo();
+      myFoo.setPrivate(value);
+
+      expect(myFoo.getPrivate()).toEqual(value);
+      expect(myFoo[key]).toBe(undefined);
+    });
+  });
+
+  describe('avoiding collisions', () => {
+    it('should keep data separate between instances', () => {
+      const value2 = 'bar';
+
+      @privateData($)
+      class Foo {
+        setPrivate(value) {
+          $(this)[key] = value;
+        }
+
+        getPrivate() {
+          return $(this)[key];
+        }
+      }
+
+      const myFoo1 = new Foo();
+      const myFoo2 = new Foo();
+
+      myFoo1.setPrivate(value);
+      myFoo2.setPrivate(value2);
+
+      expect(myFoo1.getPrivate()).toEqual(value);
+      expect(myFoo2.getPrivate()).toEqual(value2);
+      expect(myFoo1.getPrivate()).not.toEqual(myFoo2.getPrivate());
+    });
+  });
+
+  describe('when not passed a reference to the data store', () => {
+    it('should throw an error', () => {
+      expect(() => {
+        @privateData({})
+        class Foo { } // eslint-disable-line no-unused-vars
+      }).toThrow('Expected a reference to this module\'s data store.');
+    });
+  });
+});
