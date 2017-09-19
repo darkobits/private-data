@@ -33,20 +33,32 @@ Then, update your `.babelrc` file:
 
 ## Usage
 
-#### `privateData(WeakMap: store)`
+### `default(object: context): object`
 
-Class decorator that accepts a reference to the data store exported by this package.
+This package's default export is a function which accepts an instance and returns that instance's private data object. Because it is the `default` export, you may use any variable name that suits your existing conventions.
 
-Note: The data store is this package's `default` export, allowing you to assign it any name that suits your existing conventions.
+**Parameters**
 
-**Example:**
+|Name|Type|Description|
+|---|---|---|
+|`context`|`object`|Reference to a class instance, usually `this`.|
+
+**Returns**
+
+`object` - The instance's private data object.
+
+#### `privateData`
+
+Class decorator which initializes an entry in this package's data store for each newly-created class instance.
+
+### Example
 
 In this example, we will define a `Person` class that uses private data. We will use the variable `$` for the data store.
 
 ```js
 import $, { privateData } from '@darkobits/private-data';
 
-@privateData($)
+@privateData
 class Person {
   constructor(name) {
     $(this).name = name;
@@ -66,7 +78,7 @@ It is also possible to create "private methods":
 ```js
 import $, { privateData } from '@darkobits/private-data';
 
-@privateData($)
+@privateData
 class Person {
   constructor(name) {
     $(this).privateMethod = () => {
@@ -80,6 +92,10 @@ class Person {
   }
 }
 ```
+
+## Caveats
+
+Private data is backed by an object in a Weak Map. Bear in mind that objects in JavaScript are always passed by reference, so if you `return $(this);`, consumers of your class will have a direct reference to the instance's private data, which they can then modify at will. The same holds for `return`-ing any sub-tree of this object. To avoid this, always return primitive values or clone non-primitives before returning them.
 
 ## &nbsp;
 <p align="center">
