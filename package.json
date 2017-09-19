@@ -1,6 +1,6 @@
 {
   "name": "@darkobits/private-data",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A stopgap solution for private class data in JavaScript.",
   "contributors": [
     {
