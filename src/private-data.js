@@ -23,22 +23,15 @@ function createStore() {
 const store = createStore();
 
 /**
- * Class decorator which accepts a reference to a private data store and
- * initializes newly created class instnaces with the store.
+ * Class decorator which creates an entry in this module's Weak Map for the
+ * newly created instance.
  *
- * @param {function} store - Reference to the data store exported by this module.
  * @return {function} - Class decorator.
  */
-export function privateData(st) {
-  if (st !== store) {
-    throw new Error('[private-data] Expected a reference to this module\'s data store.');
-  }
-
-  return createClassDecorator(function (ctor, ...args) {
-    st.init(this);
-    return ctor(...args);
-  });
-}
+export const privateData = createClassDecorator(function (ctor, ...args) {
+  store.init(this);
+  return ctor(...args);
+});
 
 // Export the shared data store as the default export, allowing consumers to use
 // any naming convention for it.

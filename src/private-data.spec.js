@@ -6,7 +6,7 @@ describe('Private Data', () => {
 
   describe('initializing', () => {
     it('should be able to read and write to a the private data store', () => {
-      @privateData($)
+      @privateData
       class Foo {
         setPrivate(value) {
           $(this)[key] = value;
@@ -29,7 +29,7 @@ describe('Private Data', () => {
     it('should keep data separate between instances', () => {
       const value2 = 'bar';
 
-      @privateData($)
+      @privateData
       class Foo {
         setPrivate(value) {
           $(this)[key] = value;
@@ -49,15 +49,6 @@ describe('Private Data', () => {
       expect(myFoo1.getPrivate()).toEqual(value);
       expect(myFoo2.getPrivate()).toEqual(value2);
       expect(myFoo1.getPrivate()).not.toEqual(myFoo2.getPrivate());
-    });
-  });
-
-  describe('when not passed a reference to the data store', () => {
-    it('should throw an error', () => {
-      expect(() => {
-        @privateData({})
-        class Foo { } // eslint-disable-line no-unused-vars
-      }).toThrow('Expected a reference to this module\'s data store.');
     });
   });
 });
