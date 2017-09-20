@@ -2,7 +2,7 @@
 
 # private-data
 
-This package provides a (temporary) way to achieve private fields (and methods) with JavaScript classes until the [private fields proposal](https://github.com/tc39/proposal-private-fields) is finalized. This solution was inspired by Dr. Axel Rauschmayer's [blog post](http://2ality.com/2016/01/private-data-classes.html#keeping-private-data-in-weakmaps) on this topic.
+This package provides a (temporary) way to achieve private fields (and methods) with JavaScript classes until the [private fields proposal](https://github.com/tc39/proposal-private-fields) is finalized using [Weak Maps](https://ponyfoo.com/articles/es6-weakmaps-sets-and-weaksets-in-depth#es6-weakmaps). This solution was inspired by Dr. Axel Rauschmayer's [blog post](http://2ality.com/2016/01/private-data-classes.html#keeping-private-data-in-weakmaps) on this topic.
 
 ## Installation
 
@@ -78,7 +78,9 @@ class Person {
 
 ## Caveats
 
-Private data is backed by an object in a Weak Map. Bear in mind that objects in JavaScript are always passed by reference, so if you `return $(this);`, consumers of your class will have a direct reference to the instance's private data, which they can then modify at will. The same holds for `return`-ing any sub-tree of this object. To avoid this, always return primitive values or clone non-primitives before returning them.
+- Private data is backed by an object in a Weak Map. Bear in mind that objects in JavaScript are always passed by reference, so if you `return $(this);`, consumers of your class will have a direct reference to the instance's private data, which they can then modify at will. The same holds for `return`-ing any sub-tree of this object. To avoid this, always return primitive values or clone non-primitives before returning them.
+- This module performs basic checks on `WeakMap.prototype.get` and `WeakMap.prototype.set` to ensure they haven't been tampered-with, but a sophisticated attacker could subvert these checks.
+
 
 ## &nbsp;
 <p align="center">

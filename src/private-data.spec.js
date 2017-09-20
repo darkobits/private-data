@@ -54,4 +54,30 @@ describe('Private Data', () => {
       expect(myFoo1.getPrivate()).not.toEqual(myFoo2.getPrivate());
     });
   });
+
+  describe('tampering with native methods', () => {
+    const originalGet = WeakMap.prototype.get;
+    const originalSet = WeakMap.prototype.set;
+
+    it('should throw an error if WeakMap.prototype.get has been tampered with', () => {
+      WeakMap.prototype.get = function () { }; // eslint-disable-line no-extend-native
+
+      expect(() => {
+        store();
+      }).toThrow('WeakMap.prototype.get may have been tampered-with');
+    });
+
+    it('should throw an error if WeakMap.prototype.set has been tampered with', () => {
+      WeakMap.prototype.set = function () { }; // eslint-disable-line no-extend-native
+
+      expect(() => {
+        store();
+      }).toThrow('WeakMap.prototype.set may have been tampered-with');
+    });
+
+    afterEach(() => {
+      WeakMap.prototype.get = originalGet; // eslint-disable-line no-extend-native
+      WeakMap.prototype.set = originalSet; // eslint-disable-line no-extend-native
+    });
+  });
 });
