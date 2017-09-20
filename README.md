@@ -4,38 +4,23 @@
 
 This package provides a (temporary) way to achieve private fields (and methods) with JavaScript classes until the [private fields proposal](https://github.com/tc39/proposal-private-fields) is finalized. This solution was inspired by Dr. Axel Rauschmayer's [blog post](http://2ality.com/2016/01/private-data-classes.html#keeping-private-data-in-weakmaps) on this topic. Some noteworthy features of this approach:
 
-- A shared variable which points to the Weak Map is required, but this package lets consumers use a variable name of their choosing.
-- Working with private data is relatively terse; compared to working with standard instance fields/methods, only 3 additional characters (at minimum) are required.
-
 ## Installation
 
-This package requires `babel-plugin-transform-decorators-legacy`.
-
 ```bash
-$ yarn add -D babel-plugin-transform-decorators-legacy
 $ yarn add @darkobits/private-data
 ```
 
 or
 
 ```bash
-$ npm install --save-dev babel-plugin-transform-decorators-legacy
 $ npm install --save @darkobits/private-data
-```
-
-Then, update your `.babelrc` file:
-
-```
-{
-  "plugins": ["transform-decorators-legacy"]
-}
 ```
 
 ## Usage
 
-### `default(object: context): object`
+### `default(): function(object: context): object`
 
-This package's default export is a function which accepts an instance and returns that instance's private data object. Because it is the `default` export, you may use any variable name that suits your existing conventions.
+This package's default export is a function that creates a new private data store and returns a function which accepts an instance and returns its private data object.
 
 **Parameters**
 
@@ -47,18 +32,15 @@ This package's default export is a function which accepts an instance and return
 
 `object` - The instance's private data object.
 
-#### `privateData`
-
-Class decorator which initializes an entry in this package's data store for each newly-created class instance.
-
 ### Example
 
 In this example, we will define a `Person` class that uses private data. We will use the variable `$` for the data store.
 
 ```js
-import $, { privateData } from '@darkobits/private-data';
+import dataStore from '@darkobits/private-data';
 
-@privateData
+const $ = dataStore();
+
 class Person {
   constructor(name) {
     $(this).name = name;
@@ -76,9 +58,10 @@ frodo.getName(); //=> 'Frodo'
 It is also possible to create "private methods":
 
 ```js
-import $, { privateData } from '@darkobits/private-data';
+import dataStore from '@darkobits/private-data';
 
-@privateData
+const $ = dataStore();
+
 class Person {
   constructor(name) {
     $(this).privateMethod = () => {

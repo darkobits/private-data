@@ -24,18 +24,11 @@
     "prebump": "npm run prepublish",
     "bump": "standard-version"
   },
-  "peerDependencies": {
-    "babel-plugin-transform-decorators-legacy": "1.x"
-  },
-  "dependencies": {
-    "@darkobits/class-decorator": "1.x"
-  },
   "devDependencies": {
     "babel-cli": "6.x",
     "babel-core": "6.x",
     "babel-eslint": "8.x",
     "babel-jest": "21.x",
-    "babel-plugin-transform-decorators-legacy": "1.x",
     "babel-preset-env": "1.x",
     "eslint": "4.x",
     "husky": "0.14.x",
@@ -54,6 +47,7 @@
     ],
     "space": true,
     "rules": {
+      "no-multiple-empty-lines": "off",
       "no-new-func": "off",
       "prefer-arrow-callback": "off"
     }

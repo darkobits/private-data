@@ -1,4 +1,5 @@
-import $, {privateData} from './private-data'; // eslint-disable-line no-unused-vars
+import store from './private-data';
+
 
 describe('Private Data', () => {
   const key = 'privateKey';
@@ -6,7 +7,8 @@ describe('Private Data', () => {
 
   describe('initializing', () => {
     it('should be able to read and write to a the private data store', () => {
-      @privateData
+      const $ = store();
+
       class Foo {
         setPrivate(value) {
           $(this)[key] = value;
@@ -27,9 +29,10 @@ describe('Private Data', () => {
 
   describe('avoiding collisions', () => {
     it('should keep data separate between instances', () => {
+      const $ = store();
+
       const value2 = 'bar';
 
-      @privateData
       class Foo {
         setPrivate(value) {
           $(this)[key] = value;
