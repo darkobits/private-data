@@ -22,7 +22,8 @@
     "build:watch": "watch \"npm run build\" ./src/",
     "prepublish": "run-p lint test build",
     "prebump": "npm run prepublish",
-    "bump": "standard-version"
+    "bump": "standard-version",
+    "release": "git push --follow-tags; npm publish"
   },
   "devDependencies": {
     "babel-cli": "6.x",
