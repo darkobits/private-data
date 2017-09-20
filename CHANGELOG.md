@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/darkobits/private-data/compare/v1.1.0...v2.0.0) (2017-09-20)
+
+
+### Bug Fixes
+
+* Consumers cannot access data stores. ([12a9840](https://github.com/darkobits/private-data/commit/12a9840))
+
+
+### BREAKING CHANGES
+
+* This package now has a single default export which creates a new data store.
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/darkobits/private-data/compare/v1.0.0...v1.1.0) (2017-09-19)
 
