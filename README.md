@@ -18,7 +18,7 @@ $ npm install --save @darkobits/private-data
 
 ## Usage
 
-### `default(): function(object: context): object`
+### `default(): function(context: object): object`
 
 This package's default export is a function that creates a new private data store and returns a function which accepts an instance and returns its private data object.
 
