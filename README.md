@@ -4,19 +4,13 @@
 
 This package provides a (temporary) way to achieve private fields (and methods) with JavaScript classes until the [private fields proposal](https://github.com/tc39/proposal-private-fields) is finalized. It uses the [Weak Map](https://ponyfoo.com/articles/es6-weakmaps-sets-and-weaksets-in-depth#es6-weakmaps) approach as outlined by Dr. Axel Rauschmayer's [blog post](http://2ality.com/2016/01/private-data-classes.html#keeping-private-data-in-weakmaps) on this topic.
 
-## Installation
+## Install
 
 ```bash
-$ yarn add @darkobits/private-data
+$ npm i @darkobits/private-data
 ```
 
-or
-
-```bash
-$ npm install --save @darkobits/private-data
-```
-
-## Usage
+## Use
 
 ### `default(): function(context: object): object`
 
