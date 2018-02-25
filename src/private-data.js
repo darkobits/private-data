@@ -1,4 +1,6 @@
 /**
+ * @private
+ *
  * Naive check to determine if prototype methods have been tampered-with.
  *
  * See: https://davidwalsh.name/detect-native-function
@@ -18,7 +20,7 @@ function isNative(fn) {
  *
  * @return {function}
  */
-export default function () {
+export default function privateDataStore() {
   if (!isNative(WeakMap.prototype.get)) {
     throw new Error('[private-data] WeakMap.prototype.get may have been tampered-with.');
   }

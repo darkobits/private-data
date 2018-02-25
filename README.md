@@ -4,13 +4,13 @@
 
 This package provides a (temporary) way to achieve private fields (and methods) with JavaScript classes until the [private fields proposal](https://github.com/tc39/proposal-private-fields) is finalized. It uses the [Weak Map](https://ponyfoo.com/articles/es6-weakmaps-sets-and-weaksets-in-depth#es6-weakmaps) approach as outlined by Dr. Axel Rauschmayer's [blog post](http://2ality.com/2016/01/private-data-classes.html#keeping-private-data-in-weakmaps) on this topic.
 
-## Install
+# Install
 
 ```bash
 $ npm i @darkobits/private-data
 ```
 
-## Use
+# Use
 
 ### `default(): function(context: object): object`
 
@@ -70,11 +70,10 @@ class Person {
 }
 ```
 
-## Caveats
+# Caveats
 
 - Private data is backed by an object in a Weak Map. Bear in mind that objects in JavaScript are always passed by reference, so if you `return $(this);`, consumers of your class will have a direct reference to the instance's private data, which they can then modify at will. The same holds for `return`-ing any sub-tree of this object. To avoid this, always return primitive values or clone non-primitives before returning them.
 - This module performs basic checks on `WeakMap.prototype.get` and `WeakMap.prototype.set` to ensure they haven't been tampered-with, but a sophisticated attacker could subvert these checks.
-
 
 ## &nbsp;
 <p align="center">
@@ -82,17 +81,17 @@ class Person {
   <img width="22" height="22" src="https://cloud.githubusercontent.com/assets/441546/25318539/db2f4cf2-2845-11e7-8e10-ef97d91cd538.png">
 </p>
 
-[travis-img]: https://img.shields.io/travis/darkobits/private-data.svg?style=flat-square
-[travis-url]: https://travis-ci.org/darkobits/private-data
-
 [npm-img]: https://img.shields.io/npm/v/@darkobits/private-data.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/@darkobits/private-data
+
+[travis-img]: https://img.shields.io/travis/darkobits/private-data.svg?style=flat-square
+[travis-url]: https://travis-ci.org/darkobits/private-data
 
 [codacy-img]: https://img.shields.io/codacy/coverage/0023b07bb2454f2a8c336f92814f09a0.svg?style=flat-square
 [codacy-url]: https://www.codacy.com/app/darkobits/private-data
 
+[cc-img]: https://img.shields.io/badge/conventional%20commits-1.0.0-027dc6.svg?style=flat-square
+[cc-url]: https://conventionalcommits.org/
+
 [xo-img]: https://img.shields.io/badge/code_style-XO-e271a5.svg?style=flat-square
 [xo-url]: https://github.com/sindresorhus/xo
-
-[cc-img]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=flat-square
-[cc-url]: https://conventionalcommits.org/

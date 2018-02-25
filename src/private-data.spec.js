@@ -1,4 +1,4 @@
-import store from './private-data';
+import privateData from './private-data';
 
 
 describe('Private Data', () => {
@@ -7,7 +7,7 @@ describe('Private Data', () => {
 
   describe('initializing', () => {
     it('should be able to read and write to a the private data store', () => {
-      const $ = store();
+      const $ = privateData();
 
       class Foo {
         setPrivate(value) {
@@ -29,7 +29,7 @@ describe('Private Data', () => {
 
   describe('avoiding collisions', () => {
     it('should keep data separate between instances', () => {
-      const $ = store();
+      const $ = privateData();
 
       const value2 = 'bar';
 
@@ -63,7 +63,7 @@ describe('Private Data', () => {
       WeakMap.prototype.get = function () { }; // eslint-disable-line no-extend-native
 
       expect(() => {
-        store();
+        privateData();
       }).toThrow('WeakMap.prototype.get may have been tampered-with');
     });
 
@@ -71,7 +71,7 @@ describe('Private Data', () => {
       WeakMap.prototype.set = function () { }; // eslint-disable-line no-extend-native
 
       expect(() => {
-        store();
+        privateData();
       }).toThrow('WeakMap.prototype.set may have been tampered-with');
     });
 

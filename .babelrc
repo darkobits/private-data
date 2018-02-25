@@ -3,9 +3,10 @@
     ["env", {
       "targets": {
         "browsers": ["ie >= 11"],
-        "node": "6.10.0"
+        "node": "6.0.0"
       }
     }]
   ],
-  "plugins": ["transform-decorators-legacy"]
+  "comments": false,
+  "sourceRoot": "src"
 }
