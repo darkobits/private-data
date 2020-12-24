@@ -4,12 +4,9 @@
  * Naive check to determine if prototype methods have been tampered-with.
  *
  * See: https://davidwalsh.name/detect-native-function
- *
- * @param  {function} fn - Function to check.
- * @return {boolean}
  */
-function isNative(fn) {
-  return (/\{\s*\[native code\]\s*\}/).test(String(fn));
+function isNative(fn: (...args: Array<any>) => any) {
+  return (/{\s*\[native code]\s*}/).test(String(fn));
 }
 
 
@@ -17,10 +14,8 @@ function isNative(fn) {
  * Checks that native methods are (probably) intact, creates a new WeakMap, and
  * returns a function that accepts a context and returns an object it may use
  * for storing private fields/methods.
- *
- * @return {function}
  */
-export default function privateDataStore() {
+export default function createPrivateDataStore() {
   if (!isNative(WeakMap.prototype.get)) {
     throw new Error('[private-data] WeakMap.prototype.get may have been tampered-with.');
   }
@@ -31,7 +26,7 @@ export default function privateDataStore() {
 
   const data = new WeakMap();
 
-  return function (context) {
+  return (context: any) => {
     if (!data.get(context)) {
       data.set(context, {});
     }

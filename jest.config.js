@@ -1,16 +1,9 @@
-module.exports = {
-  testPathIgnorePatterns: [
-    '/dist/'
-  ],
-  coveragePathIgnorePatterns: [
-    '/dist/'
-  ],
+module.exports = require('@darkobits/ts').jest({
   coverageThreshold: {
     global: {
-      statements: 100,
-      branches: 100,
-      functions: 100,
-      lines: 100
+      branches: 90,
+      lines: 95,
+      statements: 95
     }
   }
-};
+});

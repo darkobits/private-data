@@ -10,7 +10,7 @@ describe('Private Data', () => {
       const $ = privateData();
 
       class Foo {
-        setPrivate(value) {
+        setPrivate(value: any) {
           $(this)[key] = value;
         }
 
@@ -23,6 +23,7 @@ describe('Private Data', () => {
       myFoo.setPrivate(value);
 
       expect(myFoo.getPrivate()).toEqual(value);
+      // @ts-expect-error
       expect(myFoo[key]).toBe(undefined);
     });
   });
@@ -34,7 +35,7 @@ describe('Private Data', () => {
       const value2 = 'bar';
 
       class Foo {
-        setPrivate(value) {
+        setPrivate(value: any) {
           $(this)[key] = value;
         }
 
@@ -60,7 +61,7 @@ describe('Private Data', () => {
     const originalSet = WeakMap.prototype.set;
 
     it('should throw an error if WeakMap.prototype.get has been tampered with', () => {
-      WeakMap.prototype.get = function () { }; // eslint-disable-line no-extend-native
+      WeakMap.prototype.get = jest.fn();
 
       expect(() => {
         privateData();
@@ -68,7 +69,7 @@ describe('Private Data', () => {
     });
 
     it('should throw an error if WeakMap.prototype.set has been tampered with', () => {
-      WeakMap.prototype.set = function () { }; // eslint-disable-line no-extend-native
+      WeakMap.prototype.set = jest.fn();
 
       expect(() => {
         privateData();
@@ -76,8 +77,8 @@ describe('Private Data', () => {
     });
 
     afterEach(() => {
-      WeakMap.prototype.get = originalGet; // eslint-disable-line no-extend-native
-      WeakMap.prototype.set = originalSet; // eslint-disable-line no-extend-native
+      WeakMap.prototype.get = originalGet;
+      WeakMap.prototype.set = originalSet;
     });
   });
 });

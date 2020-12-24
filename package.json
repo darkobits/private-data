@@ -13,38 +13,9 @@
   ],
   "main": "dist/private-data.js",
   "scripts": {
-    "lint": "xo",
-    "test": "jest",
-    "prebuild": "rimraf dist",
-    "build": "babel src --out-dir=dist --ignore=spec --source-maps",
-    "prepare": "run-p lint test build",
-    "prebump": "npm run prepare",
-    "bump": "standard-version"
+    "prepare": "nps prepare"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-jest": "^22.4.1",
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.18.1",
-    "jest": "^22.4.2",
-    "npm-run-all": "^4.1.2",
-    "rimraf": "^2.6.2",
-    "standard-version": "^4.3.0",
-    "xo": "^0.20.3"
-  },
-  "xo": {
-    "parser": "babel-eslint",
-    "env": [
-      "node",
-      "jest"
-    ],
-    "space": true,
-    "rules": {
-      "no-multiple-empty-lines": "off",
-      "no-new-func": "off",
-      "prefer-arrow-callback": "off"
-    }
+    "@darkobits/ts": "^0.2.2"
   }
 }
