@@ -2,7 +2,7 @@
   "name": "@darkobits/private-data",
   "description": "A stopgap solution for private class data in JavaScript.",
   "author": "darkobits",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/darkobits/private-data.git"

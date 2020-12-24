@@ -1,6 +1,21 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.1.1](https://github.com/darkobits/private-data/compare/v2.1.0...v2.1.1) (2020-12-24)
+
+
+### 📖 Documentation
+
+* Update docs. ([9a0d6b9](https://github.com/darkobits/private-data/commit/9a0d6b9323bab8fc126cda2be8e4f9e856f3e9c6))
+* Update README ([b51d336](https://github.com/darkobits/private-data/commit/b51d3366aafc098d9849216a2134701a404d505e))
+
+
+### 🏗 Chores
+
+* Add LICENSE. ([a71759d](https://github.com/darkobits/private-data/commit/a71759d65f184da5327f3e1c152e3c888177eb1f))
+* Update dependencies. ([2757984](https://github.com/darkobits/private-data/commit/27579842694c01d708c5488781aa5bfca26aa61d))
+* Update documentation, dependencies, and config files. ([50096cb](https://github.com/darkobits/private-data/commit/50096cbf842365a16f150bbafc3588e0fb995e78))
 
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/darkobits/private-data/compare/v2.0.0...v2.1.0) (2017-09-20)
